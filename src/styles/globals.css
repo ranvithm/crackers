@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+.pdf-view iframe {
+    flex: 1;
+    width: 100%;
+    border: none;
+}
