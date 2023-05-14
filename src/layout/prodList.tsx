@@ -1,27 +1,15 @@
 import valueInWords from "@/utils/to-words";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const ProductList: React.FC<{
   list: any[];
+  total: number;
+  gst: number;
+  subTotal: number;
   toggleModal: (_0: boolean) => void;
   onSubmitData: () => void;
 }> = (props) => {
-  const { list, toggleModal, onSubmitData } = props;
-  const [total, setTotal] = useState<number>(0);
-  const [gst, setGST] = useState<number>(0);
-  const [subTotal, setSubTotal] = useState<number>(0);
-
-  useEffect(() => {
-    if (list?.length > 0) {
-      const _total = list.reduce((t, a) => (t = t + a.total), 0);
-      setSubTotal(_total);
-      setGST(_total * 0.18);
-      setTotal(_total * 0.18 + _total);
-    } else {
-      setTotal(0);
-      setSubTotal(0);
-    }
-  }, [list]);
+  const { list, total, gst, subTotal, toggleModal, onSubmitData } = props;
 
   return (
     <div className="min-w-full relative rounded-xl overflow-auto">

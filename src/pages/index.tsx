@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ClientInfo from "@/layout/client";
 import ProductList from "@/layout/prodList";
 import Modal from "@/layout/modal";
@@ -11,6 +11,21 @@ const Home: React.FC = () => {
   const [client, setClient] = useState<any>();
   const [items, setItems] = useState<any[]>([]);
   const [showModal, setModal] = useState<boolean>(false);
+  const [total, setTotal] = useState<number>(0);
+  const [gst, setGST] = useState<number>(0);
+  const [subTotal, setSubTotal] = useState<number>(0);
+
+  useEffect(() => {
+    if (items?.length > 0) {
+      const _total = items.reduce((t, a) => (t = t + a.total), 0);
+      setSubTotal(_total);
+      setGST(_total * 0.18);
+      setTotal(_total * 0.18 + _total);
+    } else {
+      setTotal(0);
+      setSubTotal(0);
+    }
+  }, [items]);
 
   const onSubmitClient = (data: any) => {
     setView("list");
@@ -33,11 +48,22 @@ const Home: React.FC = () => {
         <ProductList
           toggleModal={toggleModal}
           list={items}
+          total={total}
+          gst={gst}
+          subTotal={subTotal}
           onSubmitData={() => setView("pdf")}
         />
       )}
       {showModal && <Modal onSubmitItem={onSubmitItem} />}
-      {view === "pdf" && <PDF client={client} list={items} />}
+      {view === "pdf" && (
+        <PDF
+          client={client}
+          list={items}
+          total={total}
+          gst={gst}
+          subTotal={subTotal}
+        />
+      )}
     </main>
   );
 };

@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from "@react-pdf/renderer";
+import { Font, Text, View, StyleSheet } from "@react-pdf/renderer";
 import React from "react";
 
 const styles = StyleSheet.create({
@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    height: 100,
+    height: 150,
     padding: 10,
     fontWeight: 100,
   },
@@ -16,12 +16,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   panelTitle: {
-    color: "#1976d2",
+    color: "#1e3a8a",
+    fontWeight: 500
   },
   panelBody: {
     paddingLeft: 10,
     display: "flex",
     gap: 5,
+  },
+  panelText: {
+    fontSize: 11,
+    fontWeight: 100,
   },
 });
 const Invoice: React.FC<{ client: any }> = (props) => {
@@ -34,7 +39,7 @@ const Invoice: React.FC<{ client: any }> = (props) => {
         <View style={styles.panelTitle}>
           <Text>INVOICE TO:</Text>
         </View>
-        <View style={styles.panelBody}>
+        <View style={[styles.panelBody, styles.panelText]}>
           <Text>{`${firstName} ${lastName}`}</Text>
           <Text>{address}</Text>
           <Text>{city}</Text>
@@ -49,9 +54,11 @@ const Invoice: React.FC<{ client: any }> = (props) => {
         <View style={styles.panelTitle}>
           <Text>INVOICE FROM:</Text>
         </View>
-        <View style={styles.panelBody}>
+        <View style={[styles.panelBody, styles.panelText]}>
           <Text>INDHIRAN CRACKERS</Text>
-          <Text>MARANERI – 626124</Text>
+          <Text>Maraneri, Sivakasi</Text>
+          <Text>Virudhunagar</Text>
+          <Text>TamilNadu - 626124</Text>
           <Text>9876543210</Text>
           <Text>ameen@crackers.com</Text>
         </View>

@@ -1,3 +1,4 @@
+import valueInWords from "@/utils/to-words";
 import { Text, View, StyleSheet, Image } from "@react-pdf/renderer";
 import React from "react";
 
@@ -52,8 +53,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const Table: React.FC<{ list: any[] }> = (props) => {
-  const { list } = props;
+const Table: React.FC<{
+  list: any[];
+  total: number;
+  gst: number;
+  subTotal: number;
+}> = (props) => {
+  const { list, total, gst, subTotal } = props;
   return (
     <View style={styles.table}>
       <View style={styles.tableRow}>
@@ -110,7 +116,7 @@ const Table: React.FC<{ list: any[] }> = (props) => {
           <Text>Sub Total</Text>
         </View>
         <View style={[styles.colTotal, styles.colBorder]}>
-          <Text>70000</Text>
+          <Text>{subTotal}</Text>
         </View>
       </View>
       <View style={styles.tableRow}>
@@ -124,20 +130,20 @@ const Table: React.FC<{ list: any[] }> = (props) => {
           <Text>GST (18%)</Text>
         </View>
         <View style={[styles.colTotal, styles.colBorder]}>
-          <Text>70000</Text>
+          <Text>{gst}</Text>
         </View>
       </View>
       <View style={styles.tableRow}>
         <View
           style={[styles.colItem, styles.colBorder, { alignItems: "center" }]}
         >
-          <Text>Rupees Only </Text>
+          <Text> {valueInWords(total)} rupees only </Text>
         </View>
         <View style={[styles.colTotal, styles.colBorder]}>
-          <Text>35</Text>
+          <Text>Total</Text>
         </View>
         <View style={[styles.colTotal, styles.colBorder]}>
-          <Text>70000</Text>
+          <Text>{total}</Text>
         </View>
       </View>
     </View>

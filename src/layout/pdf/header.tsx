@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image } from "@react-pdf/renderer";
 const styles = StyleSheet.create({
   header: {
     height: "80px",
-    backgroundColor: "#1976d2",
+    backgroundColor: "#1e3a8a",
     color: "#fff",
     display: "flex",
     flexDirection: "row",
