@@ -20,7 +20,7 @@ const Home: React.FC = () => {
       const _total = items.reduce((t, a) => (t = t + a.total), 0);
       setSubTotal(_total);
       setGST(_total * 0.18);
-      setTotal(_total * 0.18 + _total);
+      setTotal(Math.round(_total * 0.18 + _total));
     } else {
       setTotal(0);
       setSubTotal(0);
