@@ -45,7 +45,7 @@ const Header = () => (
     <View style={styles.invoice}>
       <Text>INVOICE</Text>
       <Text>Invoice Number: #001</Text>
-      <Text>Invoice Date: 08-APR-2023</Text>
+      <Text>Invoice Date: {new Date().toDateString()}</Text>
     </View>
   </View>
 );

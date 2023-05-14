@@ -51,6 +51,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#1e3a8a",
     color: "#fff",
   },
+  colWords: {
+    fontSize: 9,
+    textTransform: "capitalize",
+    color: "#1e3a8a"
+  },
 });
 
 const Table: React.FC<{
@@ -135,7 +140,7 @@ const Table: React.FC<{
       </View>
       <View style={styles.tableRow}>
         <View
-          style={[styles.colItem, styles.colBorder, { alignItems: "center" }]}
+          style={[styles.colItem, styles.colBorder, styles.colWords, { alignItems: "center" }]}
         >
           <Text> {valueInWords(total)} rupees only </Text>
         </View>
